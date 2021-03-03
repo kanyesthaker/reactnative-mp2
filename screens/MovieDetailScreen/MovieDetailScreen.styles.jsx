@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     fontWeight: "300",
     color: "gray",
     marginTop: 5,
-    textAlign: "center",
+    textAlign: "left",
   },
   h3: {
     fontFamily: "Avenir",
@@ -27,13 +27,14 @@ export const styles = StyleSheet.create({
     fontWeight: "300",
     color: "gray",
     marginTop: 20,
-    textAlign: "center",
+    textAlign: "left",
   },
   h4: {
     fontFamily: "Avenir",
     fontSize: 18,
     fontWeight: "300",
+    fontStyle: 'italic',
     marginTop: 20,
-    textAlign: "center",
+    textAlign: "left",
   },
 });

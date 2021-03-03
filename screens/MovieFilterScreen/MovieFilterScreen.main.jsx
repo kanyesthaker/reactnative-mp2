@@ -7,6 +7,7 @@ import {
   Text,
   Button,
 } from "react-native";
+import { HeaderBackButton } from "@react-navigation/stack";
 
 import { getAllActors } from "../../constants/Constants";
 import { styles } from "./MovieFilterScreen.styles";
@@ -24,9 +25,13 @@ export default function MovieFilterScreen({ navigation, route }) {
     () => {
       // TODO: Recieve actors passed by MovieListScreen here, and update
       // our local state using setActors.
+      if (route.params?.actors) {
+        setActors(route.params.actors);
+      }
     },
     [
       /* TODO: Insert dependent variables here. */
+      route.params?.actors
     ]
   );
 
@@ -37,9 +42,21 @@ export default function MovieFilterScreen({ navigation, route }) {
       //  2) Show a "Done" button on the right that navigates back to the MovieListScreen
       //      and passes back our current list of actors via params.
       // https://reactnavigation.org/docs/header-buttons/
+      navigation.setOptions({
+        headerLeft: () => (
+          <Button 
+            onPress={ () => { 
+              navigation.navigate('MovieListScreen', {"actors":actors});
+            }}
+            title="Done"
+          />
+        ),
+      });
+      
     },
     [
       /* TODO: Insert dependent state variables here. */
+      actors
     ]
   );
 

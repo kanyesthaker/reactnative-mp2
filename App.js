@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MovieListScreen from "./screens/MovieListScreen/MovieListScreen.main";
 import MovieDetailScreen from "./screens/MovieDetailScreen/MovieDetailScreen.main";
 import MovieFilterScreen from "./screens/MovieFilterScreen/MovieFilterScreen.main";
+import { Button } from "react-native";
 
 /* TODO: 
 
@@ -21,6 +22,41 @@ import MovieFilterScreen from "./screens/MovieFilterScreen/MovieFilterScreen.mai
   Read the example carefully to set up this app's screen heirarchy in a similar manner.
 
   https://reactnavigation.org/docs/modal */
+const MainStack = createStackNavigator();
+const RootStack = createStackNavigator();
+function MainStackScreen() {
+  return (
+    <MainStack.Navigator>
+      <MainStack.Screen 
+        name="MovieListScreen" 
+        component={MovieListScreen} 
+        options={{
+          title:'Movie List',
+        }}
+      />
+      <MainStack.Screen
+        name="MovieDetailScreen"
+        component={MovieDetailScreen} 
+        options={{title:'Info'}}
+      />
+    </MainStack.Navigator>
+  )
+}
+
+function RootStackScreen() {
+  return (
+    <RootStack.Navigator mode="modal">
+      <RootStack.Screen
+        name="Main"
+        component={MainStackScreen}
+        options={{headerShown:false}}
+      />
+      <RootStack.Screen name="MovieFilterScreen" component={MovieFilterScreen} options={{title:'Filter'}}/>
+    </RootStack.Navigator>
+  )
+}
 export default function App() {
-  return <NavigationContainer>{}</NavigationContainer>;
+  return <NavigationContainer>
+    {RootStackScreen()}
+  </NavigationContainer>;
 }
